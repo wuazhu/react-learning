@@ -6,6 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Hello bugs</title>
+  <style media="screen">
+    .box{
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      box-shadow: 0 0 0 22px #999;
+    }
+  </style>
 </head>
 
 <body>
@@ -16,26 +24,22 @@
   <script type="text/babel">
 
     let HelloBug = React.createClass({
-      getInitialState: () => {
-        return {
-          enable: false
-        }
+      propTypes: {
+        title: React.PropTypes.string.isRequired
       },
-      handleClick: function(){
-        // 请注意 在这个函数中 如果使用了箭头函数, 那么 this 的指向就改变了
-        console.log(this)
-        this.setState({
-          enable: !this.state.enable
-        })
-      },
+      // getDefaultProps(){
+      //   title: {
+      //     title: 'hello bug'
+      //   }
+      // },
       render: function() {
-        return <div>
-                <input type="text" disabled={this.state.enable}/>
-                <button onClick={this.handleClick}>改变 text 状态</button>
-              </div>
+        return(
+          <h2>{this.props.title}</h2>
+        )
     }})
+    let data = '123'
     ReactDOM.render(
-      <HelloBug />,
+      <HelloBug  title={data}></HelloBug>,
       document.getElementById('bug')
     )
   </script>
