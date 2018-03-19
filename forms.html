@@ -34,6 +34,9 @@
       changeName: function(name, event) {
         let newState = {}
         newState[name] = name == 'checkbox' ? event.target.checked: event.target.value
+        // 或者使用 name 来做, 此方法必须要有 name 属性, 绑定 onChange 事件的时候就无需bind 与传递名称
+        // newState[event.target.name] = this.target.name == 'checkbox' ? event.target.checked : event.target.value
+
         this.setState(newState)
         console.log(newState);
       },
